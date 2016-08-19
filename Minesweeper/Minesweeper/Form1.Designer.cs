@@ -28,20 +28,101 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.gameTimer = new System.Windows.Forms.Timer(this.components);
+            this.pbCanvas = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblScore = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblNbMines = new System.Windows.Forms.Label();
+            this.lblGameOver = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             this.SuspendLayout();
+            // 
+            // pbCanvas
+            // 
+            this.pbCanvas.Location = new System.Drawing.Point(13, 13);
+            this.pbCanvas.Name = "pbCanvas";
+            this.pbCanvas.Size = new System.Drawing.Size(576, 576);
+            this.pbCanvas.TabIndex = 0;
+            this.pbCanvas.TabStop = false;
+            this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(595, 137);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(140, 44);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Score :";
+            // 
+            // lblScore
+            // 
+            this.lblScore.AutoSize = true;
+            this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScore.Location = new System.Drawing.Point(741, 137);
+            this.lblScore.Name = "lblScore";
+            this.lblScore.Size = new System.Drawing.Size(0, 44);
+            this.lblScore.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(595, 202);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(143, 44);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Mines :";
+            // 
+            // lblNbMines
+            // 
+            this.lblNbMines.AutoSize = true;
+            this.lblNbMines.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNbMines.Location = new System.Drawing.Point(744, 202);
+            this.lblNbMines.Name = "lblNbMines";
+            this.lblNbMines.Size = new System.Drawing.Size(0, 44);
+            this.lblNbMines.TabIndex = 4;
+            // 
+            // lblGameOver
+            // 
+            this.lblGameOver.AutoSize = true;
+            this.lblGameOver.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGameOver.Location = new System.Drawing.Point(663, 265);
+            this.lblGameOver.Name = "lblGameOver";
+            this.lblGameOver.Size = new System.Drawing.Size(0, 44);
+            this.lblGameOver.TabIndex = 5;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(324, 445);
+            this.ClientSize = new System.Drawing.Size(899, 600);
+            this.Controls.Add(this.lblGameOver);
+            this.Controls.Add(this.lblNbMines);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.lblScore);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pbCanvas);
             this.Name = "Form1";
             this.Text = "Form1";
+            ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer gameTimer;
+        private System.Windows.Forms.PictureBox pbCanvas;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblScore;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblNbMines;
+        private System.Windows.Forms.Label lblGameOver;
     }
 }
 
