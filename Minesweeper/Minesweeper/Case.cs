@@ -32,10 +32,12 @@ namespace Minesweeper
         {
             X = 0;
             Y = 0;
-            caseState = CaseState.Hidden;
+            caseState = CaseState.Discovered;
             //Génération du type de case (RANDOM) // @TODO : à améliorer
             random = new Random();
-            caseType = (CaseType)Enum.GetValues(typeof(CaseType)).GetValue(random.Next(Enum.GetValues(typeof(CaseType)).Length));
+
+            caseType = CaseType.Normal;
+            // caseType ???
 
             InitializeValues(); // giving values to Cases, excepted "Mine"s
 
@@ -50,7 +52,7 @@ namespace Minesweeper
             }
             else
             {
-                Value = 0;
+                Value = 1;
             }
         }
     }

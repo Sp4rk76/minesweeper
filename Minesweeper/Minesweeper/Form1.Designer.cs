@@ -41,18 +41,20 @@
             // 
             // pbCanvas
             // 
+            this.pbCanvas.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.pbCanvas.Location = new System.Drawing.Point(13, 13);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(576, 576);
+            this.pbCanvas.Size = new System.Drawing.Size(608, 608);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
             this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
+            this.pbCanvas.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbCanvas_MouseUp);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(595, 137);
+            this.label1.Location = new System.Drawing.Point(663, 110);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 44);
             this.label1.TabIndex = 1;
@@ -71,7 +73,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(595, 202);
+            this.label2.Location = new System.Drawing.Point(663, 181);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 44);
             this.label2.TabIndex = 3;
@@ -99,7 +101,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(899, 600);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.ClientSize = new System.Drawing.Size(899, 643);
             this.Controls.Add(this.lblGameOver);
             this.Controls.Add(this.lblNbMines);
             this.Controls.Add(this.label2);
@@ -108,6 +111,7 @@
             this.Controls.Add(this.pbCanvas);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.pbCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
