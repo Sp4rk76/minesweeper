@@ -16,8 +16,8 @@ namespace Minesweeper
 
         public Settings()
         {
-            Width = 16;
-            Height = 16;
+            Width = 19;
+            Height = 19;
             Speed = 16;
             Score = 0;
             GameOver = false;

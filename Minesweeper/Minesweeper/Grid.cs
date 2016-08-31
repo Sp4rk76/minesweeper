@@ -10,11 +10,11 @@ namespace Minesweeper
     {
         public int Width { get; set; }
         public int Height { get; set; }
-        public Case Case { get; set; }
+        public Square Case { get; set; }
 
         public Grid()
         {
-            Case = new Case();
+            Case = new Square();
         }
 
     }
