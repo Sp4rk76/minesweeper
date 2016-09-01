@@ -14,7 +14,7 @@ namespace Minesweeper
         private int MousePosY { get; set; }
         //private int NbMines = 0;
 
-        private Image mine, empty, val1, val2, val3, val4, val5, val6, cache, cache_pressed;
+        private Image mine, mine_exploded, empty, val1, val2, val3, val4, val5, val6, cache, cache_pressed;
         //private Image[] images = new Image[9];
         private Square[,] grid;
         private bool call = true;
@@ -23,6 +23,43 @@ namespace Minesweeper
         public Form1()
         {
             InitializeComponent();
+
+            // Redefine labels' Parent
+            var posLabel1 = this.PointToScreen(label1.Location);
+            posLabel1 = pbPlayer1.PointToClient( posLabel1 );
+            label1.Parent = pbPlayer1;
+            label1.Location = posLabel1;
+            label1.BackColor = Color.Transparent;
+
+            var posLblScore = this.PointToScreen(lblScore.Location);
+            posLblScore = pbPlayer1.PointToClient( posLblScore );
+            lblScore.Parent = pbPlayer1;
+            lblScore.Location = posLblScore;
+            lblScore.BackColor = Color.Transparent;
+
+            var posLabel2 = this.PointToScreen(label2.Location);
+            posLabel2 = pbPlayer1.PointToClient( posLabel2 );
+            label2.Parent = pbPlayer1;
+            label2.Location = posLabel2;
+            label2.BackColor = Color.Transparent;
+
+            var posLblNbMines = this.PointToScreen(lblNbMines.Location);
+            posLblNbMines = pbPlayer1.PointToClient( posLblNbMines );
+            lblNbMines.Parent = pbPlayer1;
+            lblNbMines.Location = posLblNbMines;
+            lblNbMines.BackColor = Color.Transparent;
+
+            var posLblPlayerName = this.PointToScreen(lblPlayerName.Location);
+            posLblPlayerName = pbPlayer1.PointToClient( posLblPlayerName );
+            lblPlayerName.Parent = pbPlayer1;
+            lblPlayerName.Location = posLblPlayerName;
+            lblPlayerName.BackColor = Color.Transparent;
+
+            var posLblPlayerState = this.PointToScreen(lblPlayerState.Location);
+            posLblPlayerState = pbPlayer1.PointToClient( posLblPlayerState );
+            lblPlayerState.Parent = pbPlayer1;
+            lblPlayerState.Location = posLblPlayerState;
+            lblPlayerState.BackColor = Color.Transparent;
 
             new Settings();
 
@@ -36,9 +73,7 @@ namespace Minesweeper
 
 
         private void StartGame()
-        { 
-            lblGameOver.Visible = false;
-
+        {
             new Settings();
             grid = new Square[Settings.Width, Settings.Height];
             // Loading Grid (RANDOM)
@@ -70,7 +105,8 @@ namespace Minesweeper
                 if( call ) {
                     updateGrid( );
                     call = false;
-                }   
+                }
+                lblScore.Text = score.ToString();
             }
             pbCanvas.Invalidate();
         }
@@ -82,36 +118,23 @@ namespace Minesweeper
                 {
                     for (int y = 0; y < Settings.Height; y++)
                     {
-
-                        if (grid[x, y].caseState == CaseState.Hidden) {// case Hidden
-                        e.Graphics.DrawImage( cache, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
+                        if ( grid[x, y].caseState == CaseState.Hidden ) { // square Hidden
+                            //lblScore.Text = pbCanvas.Height.ToString(); // To test ...
+                            e.Graphics.DrawImage( cache, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
                         }
-                        else // case Discovered
-                        {
-                            if ( grid[x, y].Value == 0 ) {
-                                e.Graphics.DrawImage( empty, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].Value == 1 ) {
-                                e.Graphics.DrawImage( val1, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].Value == 2 ) {
-                                e.Graphics.DrawImage( val2, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].Value == 3 ) {
-                                e.Graphics.DrawImage( val3, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].Value == 4 ) {
-                                e.Graphics.DrawImage( val4, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].Value == 5 ) {
-                                e.Graphics.DrawImage( val5, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].Value == 6 ) {
-                                e.Graphics.DrawImage( val6, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
-                            if ( grid[x, y].caseType == CaseType.Mine ) {
-                                e.Graphics.DrawImage( mine, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
-                            }
+                        else if ( grid[x, y].caseState == CaseState.Exploded ) {
+                            e.Graphics.DrawImage( mine_exploded, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
+                        } 
+                        else { // case Discovered
+                            if ( grid[x, y].Value == 0 ) { e.Graphics.DrawImage( empty, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].Value == 1 ) { e.Graphics.DrawImage( val1, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].Value == 2 ) { e.Graphics.DrawImage( val2, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].Value == 3 ) { e.Graphics.DrawImage( val3, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].Value == 4 ) { e.Graphics.DrawImage( val4, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].Value == 5 ) { e.Graphics.DrawImage( val5, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].Value == 6 ) { e.Graphics.DrawImage( val6, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( grid[x, y].caseType == CaseType.Mine ) { e.Graphics.DrawImage( mine, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                        //if ( grid[x, y].caseType == CaseType.Mine && grid[x, y].caseState == CaseState.Exploded ) { e.Graphics.DrawImage( mine_exploded, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
                         } 
                     }
                 }
@@ -119,36 +142,41 @@ namespace Minesweeper
             if (Settings.GameOver)
             {
                 string gameOver = "Game over \nYour final score is: " + Settings.Score + "\nPress Enter to try again";
-                lblGameOver.Text = gameOver;
-                lblGameOver.Visible = true;
+                lblPlayerState.Text = "DEAD";
+                lblPlayerState.ForeColor = Color.DarkRed;
             }
         }
 
         private void pbCanvas_MouseUp(object sender, MouseEventArgs e)
         {
-            // Détecte le clic. Amélioration : Empêche le clic en dehors de la grille
-            if ( e.X > 0 && e.X < pbCanvas.Size.Width && e.Y > 0 && e.Y < pbCanvas.Size.Height ) {
+            if ( !Settings.GameOver ) {
+                // Détecte le clic. Amélioration : Empêche le clic en dehors de la grille
                 MousePosX = (e.X / (pbCanvas.Size.Width / Settings.Width));
                 MousePosY = (e.Y / (pbCanvas.Size.Height / Settings.Height));
                 discoverSquare( grid, MousePosX, MousePosY );
-                if ( grid[MousePosX, MousePosY].caseType == CaseType.Mine ) { // isMine()
-                    Loose( );
-                }
+                try {
+                    if ( grid[MousePosX, MousePosY].caseType == CaseType.Mine ) { // isMine()
+                        Loose( );
+                        showAllMines( );
+                        grid[MousePosX, MousePosY].caseState = CaseState.Exploded;
+                    }
+                } catch ( IndexOutOfRangeException ) { }
             }
         }
 
         private void pbCanvas_Load(object sender, EventArgs e)
         {
             // @TODO : Ajouter un foreach et parcourir un tableau d'images pour le chargement
-            mine = resize_image(load_image("pictures/mine.png"), new Size(32, 32));
-            empty = resize_image( load_image( "pictures/vide.png" ), new Size( 32, 32 ) );
-            val1 = resize_image(load_image("pictures/val1.png"), new Size(32, 32));
-            val2 = resize_image(load_image("pictures/val2.png"), new Size(32, 32));
-            val3 = resize_image(load_image("pictures/val3.png"), new Size(32, 32));
-            val4 = resize_image(load_image("pictures/val4.png"), new Size(32, 32));
-            val5 = resize_image(load_image("pictures/val5.png"), new Size(32, 32));
-            val6 = resize_image(load_image("pictures/val6.png"), new Size(32, 32));
-            cache = resize_image(load_image("pictures/cache.png"), new Size(32, 32));
+            mine          = resize_image(load_image("pictures/mine.png"),          new Size(32, 32));
+            mine_exploded = resize_image(load_image("pictures/mine_exploded.png"), new Size(32, 32));
+            empty         = resize_image(load_image("pictures/vide.png"),          new Size(32, 32));
+            val1          = resize_image(load_image("pictures/val1.png"),          new Size(32, 32));
+            val2          = resize_image(load_image("pictures/val2.png"),          new Size(32, 32));
+            val3          = resize_image(load_image("pictures/val3.png"),          new Size(32, 32));
+            val4          = resize_image(load_image("pictures/val4.png"),          new Size(32, 32));
+            val5          = resize_image(load_image("pictures/val5.png"),          new Size(32, 32));
+            val6          = resize_image(load_image("pictures/val6.png"),          new Size(32, 32));
+            cache         = resize_image(load_image( "pictures/cache.png" ),       new Size(32, 32));
             cache_pressed = resize_image(load_image("pictures/cache_pressed.png"), new Size(32, 32));
         }
 
@@ -156,7 +184,6 @@ namespace Minesweeper
         {
             using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(path)))
                 return Image.FromStream(ms);
-                
         }
 
         public Image resize_image(Image originalImage, Size size)
@@ -173,6 +200,7 @@ namespace Minesweeper
                     }
                 }
             }
+            lblNbMines.Text = nbMines.ToString( );
         }
 
         private void incrementValuesAroundMine( Square[,] grid, int rowPos, int colPos ) {
@@ -193,36 +221,51 @@ namespace Minesweeper
             Square square = grid[rowPos, colPos];
             if ( !(square.caseState == CaseState.Discovered) ) {
                 square.caseState = CaseState.Discovered;
-                if ( square.Value == 0 ) { // isEmpty()
-                    // Recursivity on 8 squares around actual position
-                    discoverSquare( grid, rowPos - 1, colPos + 0 );
-                    discoverSquare( grid, rowPos + 1, colPos + 0 );
-                    discoverSquare( grid, rowPos + 0, colPos + 1 );
-                    discoverSquare( grid, rowPos + 0, colPos - 1 );
-                    discoverSquare( grid, rowPos + 1, colPos + 1 );
-                    discoverSquare( grid, rowPos + 1, colPos - 1 );
-                    discoverSquare( grid, rowPos - 1, colPos + 1 );
-                    discoverSquare( grid, rowPos - 1, colPos - 1 );
+                switch(square.Value ) { // isEmpty()
+                    case 0:
+                        // Recursivity on 8 squares around actual position
+                        discoverSquare( grid, rowPos - 1, colPos + 0 );
+                        discoverSquare( grid, rowPos + 1, colPos + 0 );
+                        discoverSquare( grid, rowPos + 0, colPos + 1 );
+                        discoverSquare( grid, rowPos + 0, colPos - 1 );
+                        discoverSquare( grid, rowPos + 1, colPos + 1 );
+                        discoverSquare( grid, rowPos + 1, colPos - 1 );
+                        discoverSquare( grid, rowPos - 1, colPos + 1 );
+                        discoverSquare( grid, rowPos - 1, colPos - 1 );
+                        score += 20;
+                        break;
+                    case 1: score += 100; break;
+                    case 2:
+                        score += 200;
+                        break;
+                    case 3:
+                        score += 300;
+                        break;
+                    case 4:
+                        score += 400;
+                        break;
+                    case 5:
+                        score += 500;
+                        break;
+                    case 6:
+                        score += 600;
+                        break;
                 }
             }           
         }
 
-        private void Loose( ) {
-            Settings.GameOver = true;
-        }
-
-        private void calculateScore( ) {
-
-        }
-
-        private void countMines( ) {
+        private void showAllMines( ) {
             for(int rowPos = 0; rowPos < Settings.Width; rowPos++ ) {
-                for ( int colPos = 0; colPos < Settings.Height; colPos++ ) {
-                    if ( grid[rowPos, colPos].caseType == CaseType.Mine ) {
-                        nbMines++;
+                for(int colPos = 0; colPos < Settings.Height; colPos++ ) {
+                    if(grid[rowPos, colPos].caseType == CaseType.Mine ) {
+                        grid[rowPos, colPos].caseState = CaseState.Discovered;
                     }
                 }
             }
+        }
+
+        private void Loose( ) {
+            Settings.GameOver = true;
         }
 
     }

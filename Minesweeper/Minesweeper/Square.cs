@@ -10,7 +10,8 @@ namespace Minesweeper
     public enum CaseState
     {
         Hidden,
-        Discovered
+        Discovered,
+        Exploded
     };
 
     public enum CaseType
