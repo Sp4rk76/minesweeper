@@ -9,16 +9,15 @@ namespace Minesweeper
 {
     public partial class Form1 : Form
     {
-        
         private int MousePosX { get; set; }
         private int MousePosY { get; set; }
         //private int NbMines = 0;
 
-        private Image mine, mine_exploded, empty, val1, val2, val3, val4, val5, val6, cache, cache_pressed;
+        private Image mine, mine_exploded, empty, val1, val2, val3, val4, val5, val6, cache, cache_pressed, flag;
         //private Image[] images = new Image[9];
         private Square[,] grid;
         private bool call = true;
-        private int nbMines, score;
+        private int nbMines, nbDiscoveredSquares, score;
 
         public Form1()
         {
@@ -121,6 +120,9 @@ namespace Minesweeper
                         if ( grid[x, y].caseState == CaseState.Hidden ) { // square Hidden
                             //lblScore.Text = pbCanvas.Height.ToString(); // To test ...
                             e.Graphics.DrawImage( cache, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
+                            if( grid[x, y].flag ) {
+                                e.Graphics.DrawImage( flag, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
+                            }
                         }
                         else if ( grid[x, y].caseState == CaseState.Exploded ) {
                             e.Graphics.DrawImage( mine_exploded, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
@@ -139,28 +141,49 @@ namespace Minesweeper
                     }
                 }
             // Sinon, (gameOver)
-            if (Settings.GameOver)
-            {
+            if (Settings.GameOver) {
                 string gameOver = "Game over \nYour final score is: " + Settings.Score + "\nPress Enter to try again";
                 lblPlayerState.Text = "DEAD";
                 lblPlayerState.ForeColor = Color.DarkRed;
+            }
+            if ( Settings.Win ) {
+                lblPlayerState.Text = "You Won !";
             }
         }
 
         private void pbCanvas_MouseUp(object sender, MouseEventArgs e)
         {
-            if ( !Settings.GameOver ) {
+            if ( !Settings.GameOver && !Settings.Win ) { // If Game isRunning()
                 // Détecte le clic. Amélioration : Empêche le clic en dehors de la grille
                 MousePosX = (e.X / (pbCanvas.Size.Width / Settings.Width));
                 MousePosY = (e.Y / (pbCanvas.Size.Height / Settings.Height));
-                discoverSquare( grid, MousePosX, MousePosY );
-                try {
-                    if ( grid[MousePosX, MousePosY].caseType == CaseType.Mine ) { // isMine()
-                        Loose( );
-                        showAllMines( );
-                        grid[MousePosX, MousePosY].caseState = CaseState.Exploded;
-                    }
-                } catch ( IndexOutOfRangeException ) { }
+
+                switch ( e.Button ) {
+                    case (MouseButtons.Left):
+                        //MouseButton = "Left_Click";
+                        discoverSquare( grid, MousePosX, MousePosY );
+                        TestWin( );
+                        try {
+                            if ( grid[MousePosX, MousePosY].caseType == CaseType.Mine ) { // isMine()
+                                Loose( );
+                                showAllMines( );
+                                grid[MousePosX, MousePosY].caseState = CaseState.Exploded;
+                            }
+                        } catch ( IndexOutOfRangeException ) { }
+                        break;
+                    /*
+                    case (MouseButtons.Middle):
+                        MouseButton = "Middle_Click";
+                        break;
+                    */
+                    case (MouseButtons.Right):
+                        //MouseButton = "Right_Click";
+                        try {
+                            grid[MousePosX, MousePosY].flag = !grid[MousePosX, MousePosY].flag;
+                        } catch ( IndexOutOfRangeException ) { }
+                        break;
+                }
+
             }
         }
 
@@ -176,8 +199,9 @@ namespace Minesweeper
             val4          = resize_image(load_image("pictures/val4.png"),          new Size(32, 32));
             val5          = resize_image(load_image("pictures/val5.png"),          new Size(32, 32));
             val6          = resize_image(load_image("pictures/val6.png"),          new Size(32, 32));
-            cache         = resize_image(load_image( "pictures/cache.png" ),       new Size(32, 32));
+            cache         = resize_image(load_image("pictures/cache.png"),         new Size(32, 32));
             cache_pressed = resize_image(load_image("pictures/cache_pressed.png"), new Size(32, 32));
+            flag          = resize_image(load_image("pictures/flag.png"),          new Size( 32, 32 ) );
         }
 
         public Image load_image(string path)
@@ -232,23 +256,32 @@ namespace Minesweeper
                         discoverSquare( grid, rowPos + 1, colPos - 1 );
                         discoverSquare( grid, rowPos - 1, colPos + 1 );
                         discoverSquare( grid, rowPos - 1, colPos - 1 );
+                        nbDiscoveredSquares++;
                         score += 20;
                         break;
-                    case 1: score += 100; break;
+                    case 1:
+                        score += 100;
+                        nbDiscoveredSquares++;
+                        break;
                     case 2:
                         score += 200;
+                        nbDiscoveredSquares++;
                         break;
                     case 3:
                         score += 300;
+                        nbDiscoveredSquares++;
                         break;
                     case 4:
                         score += 400;
+                        nbDiscoveredSquares++;
                         break;
                     case 5:
                         score += 500;
+                        nbDiscoveredSquares++;
                         break;
                     case 6:
                         score += 600;
+                        nbDiscoveredSquares++;
                         break;
                 }
             }           
@@ -266,6 +299,12 @@ namespace Minesweeper
 
         private void Loose( ) {
             Settings.GameOver = true;
+        }
+
+        private void TestWin( ) {
+            // nbCases - nbMines == nbCasesDecouvertes
+            if ( ((Settings.Width * Settings.Height) - nbMines) == nbDiscoveredSquares )
+                Settings.Win = true;
         }
 
     }

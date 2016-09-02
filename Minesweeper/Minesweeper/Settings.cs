@@ -21,10 +21,11 @@ namespace Minesweeper
         public static int Speed { get; set; }
         public static int Score { get; set; }
         public static bool GameOver { get; set; }
+        public static bool Win { get; set; }
 
         public Settings() // "difficulty" will be a Game Parameter in the future
         {
-            this.difficulty = Difficulty.Normal;
+            difficulty = Difficulty.Easy;
             switch( difficulty ) {
                 case Difficulty.Easy:
                     Width = 10;
@@ -42,6 +43,7 @@ namespace Minesweeper
             Speed = 16;
             Score = 0;
             GameOver = false;
+            Win = false;
         }
     }
 }
