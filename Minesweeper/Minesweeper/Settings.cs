@@ -29,7 +29,7 @@ namespace Minesweeper
             switch( difficulty ) {
                 case Difficulty.Easy:
                     Width = 10;
-                    Height = 10;
+                    Height = 10; 
                     break;
                 case Difficulty.Normal:
                     Width = 20;
