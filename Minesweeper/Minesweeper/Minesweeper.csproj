@@ -109,8 +109,21 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <None Include="Resources\cache_pressed.png" />
+    <Content Include="Resources\cache.png" />
+    <Content Include="Resources\cache_pressed.png" />
+    <Content Include="Resources\flag.png" />
+    <Content Include="Resources\iconeMine.ico" />
+    <Content Include="Resources\mine.png" />
+    <Content Include="Resources\mine_exploded.png" />
+    <Content Include="Resources\val1.png" />
+    <Content Include="Resources\val2.png" />
+    <Content Include="Resources\val3.png" />
+    <Content Include="Resources\val4.png" />
+    <Content Include="Resources\val5.png" />
+    <Content Include="Resources\val6.png" />
+    <Content Include="Resources\vide.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
