@@ -25,7 +25,7 @@ namespace Minesweeper
 
         public Settings() // "difficulty" will be a Game Parameter in the future
         {
-            difficulty = Difficulty.Easy;
+            difficulty = Difficulty.Normal;
             switch( difficulty ) {
                 case Difficulty.Easy:
                     Width = 10;
