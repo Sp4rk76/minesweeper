@@ -36,7 +36,7 @@ namespace Minesweeper
             random = new Random();
 
             InitializeCaseType( );
-            
+                        
             InitializeValues( ); // giving values to Cases, excepted "Mine"s
 
             flag = false;

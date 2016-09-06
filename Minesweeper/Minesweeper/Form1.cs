@@ -23,42 +23,7 @@ namespace Minesweeper
         {
             InitializeComponent();
 
-            // Redefine labels' Parent
-            var posLabel1 = this.PointToScreen(label1.Location);
-            posLabel1 = pbPlayer1.PointToClient( posLabel1 );
-            label1.Parent = pbPlayer1;
-            label1.Location = posLabel1;
-            label1.BackColor = Color.Transparent;
-
-            var posLblScore = this.PointToScreen(lblScore.Location);
-            posLblScore = pbPlayer1.PointToClient( posLblScore );
-            lblScore.Parent = pbPlayer1;
-            lblScore.Location = posLblScore;
-            lblScore.BackColor = Color.Transparent;
-
-            var posLabel2 = this.PointToScreen(label2.Location);
-            posLabel2 = pbPlayer1.PointToClient( posLabel2 );
-            label2.Parent = pbPlayer1;
-            label2.Location = posLabel2;
-            label2.BackColor = Color.Transparent;
-
-            var posLblNbMines = this.PointToScreen(lblNbMines.Location);
-            posLblNbMines = pbPlayer1.PointToClient( posLblNbMines );
-            lblNbMines.Parent = pbPlayer1;
-            lblNbMines.Location = posLblNbMines;
-            lblNbMines.BackColor = Color.Transparent;
-
-            var posLblPlayerName = this.PointToScreen(lblPlayerName.Location);
-            posLblPlayerName = pbPlayer1.PointToClient( posLblPlayerName );
-            lblPlayerName.Parent = pbPlayer1;
-            lblPlayerName.Location = posLblPlayerName;
-            lblPlayerName.BackColor = Color.Transparent;
-
-            var posLblPlayerState = this.PointToScreen(lblPlayerState.Location);
-            posLblPlayerState = pbPlayer1.PointToClient( posLblPlayerState );
-            lblPlayerState.Parent = pbPlayer1;
-            lblPlayerState.Location = posLblPlayerState;
-            lblPlayerState.BackColor = Color.Transparent;
+            setButtonDependencies( );
 
             new Settings();
 
@@ -72,7 +37,6 @@ namespace Minesweeper
 
         private void buttonPlay_Click( object sender, EventArgs e ) {
             if ( Settings.GameOver ) {
-                call = true;
                 StartGame( );
             }
         }
@@ -82,7 +46,9 @@ namespace Minesweeper
             new Settings( );
             game = new Game( );
             game.initGrid( );
-            call = true;        
+            call = true;
+            lblPlayerState.Text = "ALIVE";
+            lblPlayerState.ForeColor = Color.ForestGreen;
         }
 
         private void UpdateScreen( object sender, EventArgs e ) {
@@ -141,6 +107,7 @@ namespace Minesweeper
             }
             if ( Settings.Win ) {
                 lblPlayerState.Text = "You Won !";
+                lblPlayerState.ForeColor = Color.ForestGreen;
             }
         }
 
@@ -206,8 +173,45 @@ namespace Minesweeper
         {
             return (Image)(new Bitmap(originalImage, size));
         }
-        
-                
+
+        private void setButtonDependencies( ) {
+            // Redefine labels' Parent
+            var posLabel1 = this.PointToScreen(label1.Location);
+            posLabel1 = pbPlayer1.PointToClient( posLabel1 );
+            label1.Parent = pbPlayer1;
+            label1.Location = posLabel1;
+            label1.BackColor = Color.Transparent;
+
+            var posLblScore = this.PointToScreen(lblScore.Location);
+            posLblScore = pbPlayer1.PointToClient( posLblScore );
+            lblScore.Parent = pbPlayer1;
+            lblScore.Location = posLblScore;
+            lblScore.BackColor = Color.Transparent;
+
+            var posLabel2 = this.PointToScreen(label2.Location);
+            posLabel2 = pbPlayer1.PointToClient( posLabel2 );
+            label2.Parent = pbPlayer1;
+            label2.Location = posLabel2;
+            label2.BackColor = Color.Transparent;
+
+            var posLblNbMines = this.PointToScreen(lblNbMines.Location);
+            posLblNbMines = pbPlayer1.PointToClient( posLblNbMines );
+            lblNbMines.Parent = pbPlayer1;
+            lblNbMines.Location = posLblNbMines;
+            lblNbMines.BackColor = Color.Transparent;
+
+            var posLblPlayerName = this.PointToScreen(lblPlayerName.Location);
+            posLblPlayerName = pbPlayer1.PointToClient( posLblPlayerName );
+            lblPlayerName.Parent = pbPlayer1;
+            lblPlayerName.Location = posLblPlayerName;
+            lblPlayerName.BackColor = Color.Transparent;
+
+            var posLblPlayerState = this.PointToScreen(lblPlayerState.Location);
+            posLblPlayerState = pbPlayer1.PointToClient( posLblPlayerState );
+            lblPlayerState.Parent = pbPlayer1;
+            lblPlayerState.Location = posLblPlayerState;
+            lblPlayerState.BackColor = Color.Transparent;
+        }
 
     }
 
