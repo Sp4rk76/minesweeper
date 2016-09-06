@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.pbCanvas = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -39,6 +38,7 @@
             this.pbPlayer1 = new System.Windows.Forms.PictureBox();
             this.lblPlayerName = new System.Windows.Forms.Label();
             this.lblPlayerState = new System.Windows.Forms.Label();
+            this.buttonPlay = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlayer1)).BeginInit();
             this.SuspendLayout();
@@ -97,8 +97,8 @@
             // 
             // pbPlayer1
             // 
-            this.pbPlayer1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.pbPlayer1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pbPlayer1.BackgroundImage")));
+            this.pbPlayer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.pbPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbPlayer1.Location = new System.Drawing.Point(669, 13);
             this.pbPlayer1.Name = "pbPlayer1";
             this.pbPlayer1.Size = new System.Drawing.Size(247, 296);
@@ -110,11 +110,11 @@
             this.lblPlayerName.AutoSize = true;
             this.lblPlayerName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblPlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerName.Location = new System.Drawing.Point(733, 22);
+            this.lblPlayerName.Location = new System.Drawing.Point(700, 25);
             this.lblPlayerName.Name = "lblPlayerName";
-            this.lblPlayerName.Size = new System.Drawing.Size(121, 32);
+            this.lblPlayerName.Size = new System.Drawing.Size(187, 32);
             this.lblPlayerName.TabIndex = 402;
-            this.lblPlayerName.Text = "Sp4rk76";
+            this.lblPlayerName.Text = "Guest_Player";
             this.lblPlayerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPlayerState
@@ -129,12 +129,23 @@
             this.lblPlayerState.Text = "ALIVE";
             this.lblPlayerState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // buttonPlay
+            // 
+            this.buttonPlay.Location = new System.Drawing.Point(669, 324);
+            this.buttonPlay.Name = "buttonPlay";
+            this.buttonPlay.Size = new System.Drawing.Size(247, 34);
+            this.buttonPlay.TabIndex = 404;
+            this.buttonPlay.Text = "PLAY GAME";
+            this.buttonPlay.UseVisualStyleBackColor = true;
+            this.buttonPlay.Click += new System.EventHandler(this.buttonPlay_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(933, 663);
+            this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.lblPlayerState);
             this.Controls.Add(this.lblPlayerName);
             this.Controls.Add(this.pbPlayer1);
@@ -164,6 +175,7 @@
         private System.Windows.Forms.PictureBox pbPlayer1;
         private System.Windows.Forms.Label lblPlayerName;
         private System.Windows.Forms.Label lblPlayerState;
+        private System.Windows.Forms.Button buttonPlay;
     }
 }
 

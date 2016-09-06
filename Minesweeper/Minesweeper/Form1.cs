@@ -67,9 +67,14 @@ namespace Minesweeper
             gameTimer.Start();
 
             // Starting New game
-            StartGame();
+            StartGame( );
         }
 
+        private void buttonPlay_Click( object sender, EventArgs e ) {
+            if ( Settings.GameOver ) {
+                StartGame( );
+            }
+        }
 
         private void StartGame()
         {
@@ -87,27 +92,17 @@ namespace Minesweeper
             }
         }
 
-        private void UpdateScreen(object sender, EventArgs e)
-        {
+        private void UpdateScreen( object sender, EventArgs e ) {
             //Check for Game Over
-            if (Settings.GameOver)
-            {
-                //Check if Enter is pressed
-                if (Input.KeyPressed(Keys.Enter))
-                {
-                    StartGame();
-                }
-            }
-            else
-            {
+            if ( !Settings.GameOver ) {
                 // Re-Checking the Grid Once to load Assets
-                if( call ) {
+                if ( call ) {
                     updateGrid( );
                     call = false;
                 }
-                lblScore.Text = score.ToString();
+                lblScore.Text = score.ToString( );
             }
-            pbCanvas.Invalidate();
+            pbCanvas.Invalidate( );
         }
 
         private void pbCanvas_Paint(object sender, PaintEventArgs e)
@@ -201,7 +196,7 @@ namespace Minesweeper
             val6          = resize_image(load_image("pictures/val6.png"),          new Size(32, 32));
             cache         = resize_image(load_image("pictures/cache.png"),         new Size(32, 32));
             cache_pressed = resize_image(load_image("pictures/cache_pressed.png"), new Size(32, 32));
-            flag          = resize_image(load_image("pictures/flag.png"),          new Size( 32, 32 ) );
+            flag          = resize_image(load_image("pictures/flag.png"),          new Size(32, 32));
         }
 
         public Image load_image(string path)
