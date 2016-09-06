@@ -13,8 +13,7 @@ namespace Minesweeper
         Hard,
         Nightmare
     };
-    class Settings
-    {
+    class Settings {
         private Difficulty difficulty;
         public static int Width { get; set; }
         public static int Height { get; set; }
@@ -22,6 +21,8 @@ namespace Minesweeper
         public static int Score { get; set; }
         public static bool GameOver { get; set; }
         public static bool Win { get; set; }
+        public static int NbMines { get; set; }
+        public static int NbDiscoveredSquares {get; set;}
 
         public Settings() // "difficulty" will be a Game Parameter in the future
         {
@@ -42,6 +43,8 @@ namespace Minesweeper
             }
             Speed = 16;
             Score = 0;
+            NbMines = 0;
+            NbDiscoveredSquares = 0;
             GameOver = false;
             Win = false;
         }

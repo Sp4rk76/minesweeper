@@ -77,7 +77,7 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Grid.cs" />
+    <Compile Include="Game.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="ODump.cs" />
     <Compile Include="Program.cs" />
@@ -112,7 +112,6 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Resources\cache.png" />
-    <Content Include="Resources\cache_pressed.png" />
     <Content Include="Resources\flag.png" />
     <Content Include="Resources\iconeMine.ico" />
     <Content Include="Resources\mine.png" />
