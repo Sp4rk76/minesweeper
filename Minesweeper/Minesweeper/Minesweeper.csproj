@@ -70,6 +70,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
     <Compile Include="Square.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
@@ -77,7 +78,6 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Game.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="ODump.cs" />
     <Compile Include="Program.cs" />
@@ -114,6 +114,7 @@
     <Content Include="Resources\cache.png" />
     <Content Include="Resources\flag.png" />
     <Content Include="Resources\iconeMine.ico" />
+    <Content Include="Resources\mainBackground.png" />
     <Content Include="Resources\mine.png" />
     <Content Include="Resources\mine_exploded.png" />
     <Content Include="Resources\val1.png" />

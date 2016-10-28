@@ -22,9 +22,8 @@ namespace Minesweeper
 
     class Square
     {
-        private int result;
+        private Random result;
         public CaseState caseState { get; set; }
-        public Random random { get; set; }
         public CaseType caseType { get; set; }
         public int Value { get; set; }
         public bool flag { get; set; }
@@ -33,7 +32,6 @@ namespace Minesweeper
         {
             caseState = CaseState.Hidden;
             //Génération du type de case (RANDOM) // @TODO : à améliorer
-            random = new Random();
 
             InitializeCaseType( );
                         
@@ -55,13 +53,12 @@ namespace Minesweeper
         }
 
         private void InitializeCaseType( ) {
-            result = new Random( ).Next( 10 );
-            if(result == 0) { // 10 %
+            result = new Random( Guid.NewGuid( ).GetHashCode( ) );
+            if(result.Next( 10 ) == 0) { // 10 %
                 caseType = CaseType.Mine;
             } else {
                 caseType = CaseType.Normal;
             }
-            Thread.Sleep( 20 );
         }
 
     }

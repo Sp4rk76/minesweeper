@@ -5,6 +5,7 @@ using System.Windows.Forms;
 using System.IO;
 using System.Collections.Generic;
 using System.Threading;
+using Minesweeper.Properties;
 
 namespace Minesweeper
 {
@@ -150,22 +151,22 @@ namespace Minesweeper
         private void pbCanvas_Load(object sender, EventArgs e)
         {
             // @TODO : Ajouter un foreach et parcourir un tableau d'images pour le chargement
-            mine          = resize_image(load_image("pictures/mine.png"),          new Size(32, 32));
-            mine_exploded = resize_image(load_image("pictures/mine_exploded.png"), new Size(32, 32));
-            empty         = resize_image(load_image("pictures/vide.png"),          new Size(32, 32));
-            val1          = resize_image(load_image("pictures/val1.png"),          new Size(32, 32));
-            val2          = resize_image(load_image("pictures/val2.png"),          new Size(32, 32));
-            val3          = resize_image(load_image("pictures/val3.png"),          new Size(32, 32));
-            val4          = resize_image(load_image("pictures/val4.png"),          new Size(32, 32));
-            val5          = resize_image(load_image("pictures/val5.png"),          new Size(32, 32));
-            val6          = resize_image(load_image("pictures/val6.png"),          new Size(32, 32));
-            cache         = resize_image(load_image("pictures/cache.png"),         new Size(32, 32));
-            flag          = resize_image(load_image("pictures/flag.png"),          new Size(32, 32));
+            mine          = resize_image(load_image("mine.png"),          new Size(32, 32));
+            mine_exploded = resize_image(load_image("mine_exploded.png"), new Size(32, 32));
+            empty         = resize_image(load_image("vide.png"),          new Size(32, 32));
+            val1          = resize_image(load_image("val1.png"),          new Size(32, 32));
+            val2          = resize_image(load_image("val2.png"),          new Size(32, 32));
+            val3          = resize_image(load_image("val3.png"),          new Size(32, 32));
+            val4          = resize_image(load_image("val4.png"),          new Size(32, 32));
+            val5          = resize_image(load_image("val5.png"),          new Size(32, 32));
+            val6          = resize_image(load_image("val6.png"),          new Size(32, 32));
+            cache         = resize_image(load_image("cache.png"),         new Size(32, 32));
+            flag          = resize_image(load_image("flag.png"),          new Size(32, 32));
         }
 
         public Image load_image(string path)
         {
-            using (MemoryStream ms = new MemoryStream(File.ReadAllBytes(path)))
+            using (MemoryStream ms = new MemoryStream(File.ReadAllBytes("../../Resources/" + path)))
                 return Image.FromStream(ms);
         }
 
