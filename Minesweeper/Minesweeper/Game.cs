@@ -11,19 +11,17 @@ namespace Minesweeper
         public int Width { get; set; }
         public int Height { get; set; }
         public Square[,] grid { get; set; }
+        public bool IsRunning { // Check if the game is Running
+            get { return false; }
+            set { }
+        }
+
+
         public Game()
         {
             grid = new Square[Settings.Width, Settings.Height];
         }
-        /*
-        public async void CallInitGrid( ) {
-            await initGridAsync();
-        }
-
-        public Task<string> initGridAsync(){
-            return Task.Run<string>( ( ) => initGrid( ) );
-        }
-        */
+        
         public void initGrid( ) {
             // Loading Grid (RANDOM)
             Array.Clear( grid, 0, grid.Length );
@@ -32,10 +30,8 @@ namespace Minesweeper
                 for ( int y = 0; y < Settings.Height; y++ ) {
                     grid[x, y] = new Square( );
                 }
-            }
-            
-            // @TODO : Put Loading animations HERE //
-
+            }  
+            // Improving : Can put loading animations HERE //
         }
 
         public void updateGrid( ) { // await initGrid ??
@@ -118,10 +114,6 @@ namespace Minesweeper
             try { grid[rowPos - 1, colPos + 1].Value += 1; } catch ( IndexOutOfRangeException ) { }
             try { grid[rowPos - 1, colPos - 1].Value += 1; } catch ( IndexOutOfRangeException ) { }
         }
-
-
-
-
 
         public void Loose( ) {
             Settings.GameOver = true;

@@ -6,6 +6,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Threading;
 using Minesweeper.Properties;
+using System.Diagnostics;
 
 namespace Minesweeper
 {
@@ -24,15 +25,16 @@ namespace Minesweeper
         {
             InitializeComponent();
 
+            new Settings( );
+
+            // @ TODO : To improve 
+            pbMenu.Enabled = true;
+            //
+
             setButtonDependencies( );
 
-            new Settings();
+            SetGameTimer( );
 
-            gameTimer.Interval = 1000 / Settings.Speed;
-            gameTimer.Tick += UpdateScreen;
-            gameTimer.Start();
-
-            // Starting New game
             StartGame( );
         }
 
@@ -46,6 +48,11 @@ namespace Minesweeper
         {
             new Settings( );
             game = new Game( );
+            game.IsRunning = true;
+
+            // Game has Started -> Hide Menu
+            pbMenu.Enabled = false;
+            
             game.initGrid( );
             call = true;
             lblPlayerState.Text = "ALIVE";
@@ -88,7 +95,7 @@ namespace Minesweeper
                             e.Graphics.DrawImage( mine_exploded, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
                         } 
                         else { // case Discovered
-                            if ( game.grid[x, y].Value == 0 ) { e.Graphics.DrawImage( empty, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
+                            if ( game.grid[x, y].Value == 0 ) { e.Graphics.DrawImage( empty,new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
                             if ( game.grid[x, y].Value == 1 ) { e.Graphics.DrawImage( val1, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
                             if ( game.grid[x, y].Value == 2 ) { e.Graphics.DrawImage( val2, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
                             if ( game.grid[x, y].Value == 3 ) { e.Graphics.DrawImage( val3, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) ); }
@@ -175,6 +182,18 @@ namespace Minesweeper
             return (Image)(new Bitmap(originalImage, size));
         }
 
+        private void buttonReplay_Click( object sender, EventArgs e ) {
+            gameTimer.Dispose( ); // Forced Dispose;
+            SetGameTimer( );
+            StartGame( );
+        }
+
+        private void SetGameTimer( ) {
+            gameTimer.Interval = 1000 / Settings.Speed;
+            gameTimer.Tick += UpdateScreen;
+            gameTimer.Start( );
+        }
+
         private void setButtonDependencies( ) {
             // Redefine labels' Parent
             var posLabel1 = this.PointToScreen(label1.Location);
@@ -213,6 +232,20 @@ namespace Minesweeper
             lblPlayerState.Location = posLblPlayerState;
             lblPlayerState.BackColor = Color.Transparent;
         }
+
+
+
+
+        private void pbMenu_Paint( object sender, PaintEventArgs e ) {
+
+        }
+
+        
+
+
+
+
+
 
     }
 
