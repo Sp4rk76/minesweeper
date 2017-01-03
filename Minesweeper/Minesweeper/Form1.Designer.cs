@@ -1,6 +1,6 @@
 ﻿namespace Minesweeper
 {
-    partial class Form1
+    partial class Minesweeper
     {
         /// <summary>
         /// Required designer variable.
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Minesweeper));
             this.gameTimer = new System.Windows.Forms.Timer(this.components);
             this.pbCanvas = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -161,7 +161,7 @@
             // 
             this.pbMenu.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbMenu.InitialImage")));
             this.pbMenu.Location = new System.Drawing.Point(283, 265);
-            this.pbMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pbMenu.Margin = new System.Windows.Forms.Padding(4);
             this.pbMenu.Name = "pbMenu";
             this.pbMenu.Size = new System.Drawing.Size(60, 57);
             this.pbMenu.TabIndex = 406;
@@ -169,7 +169,7 @@
             this.pbMenu.Click += new System.EventHandler(this.pbMenu_Click);
             this.pbMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMenu_Paint);
             // 
-            // Form1
+            // Minesweeper
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -187,8 +187,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbCanvas);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Minesweeper";
+            this.Text = "MineSweeper C#";
             this.Load += new System.EventHandler(this.pbCanvas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbCanvas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbPlayer1)).EndInit();

@@ -10,7 +10,7 @@ using System.Diagnostics;
 
 namespace Minesweeper
 {
-    public partial class Form1 : Form
+    public partial class Minesweeper : Form
     {
         private int MousePosX { get; set; }
         private int MousePosY { get; set; }
@@ -21,7 +21,7 @@ namespace Minesweeper
         private Game game;
         private bool call = true;
 
-        public Form1()
+        public Minesweeper()
         {
             MousePosX = 1;
             MousePosY = 1;
