@@ -23,13 +23,15 @@ namespace Minesweeper
 
         public Form1()
         {
+            MousePosX = 1;
+            MousePosY = 1;
            
             InitializeComponent();
             setButtonDependencies( );
             new Settings( );
             // @ TODO : To improve 
-            // pbMenu.Enabled = true;
-            // pbMenu.Visible = true;
+              pbMenu.Enabled = true;
+              pbMenu.Visible = true;
             //
 
             SetGameTimer( );
@@ -47,10 +49,9 @@ namespace Minesweeper
             new Settings( );
             game = new Game( );
             
-
             // Game has Started -> Hide Menu
-            //pbMenu.Visible = false;
-            //pbMenu.Enabled = false;
+            pbMenu.Visible = false;
+            pbMenu.Enabled = false;
 
             game.initGrid( );
             call = true;
@@ -64,18 +65,14 @@ namespace Minesweeper
 
         private void UpdateScreen( object sender, EventArgs e ) {
             //Check for Game Over
-            if ( !Settings.GameOver && !Settings.Win ) {
+            if ( !Settings.GameOver ) {
                 // Re-Checking the Grid Once to load Assets
                 if ( call ) {
                     game.updateGrid( );
-                    pbCanvas.MouseUp += pbCanvas_MouseUp;
                     call=false;
                 }
                 lblScore.Text = (Settings.Score).ToString( );
                 lblNbMines.Text = (Settings.NbMines).ToString( );
-            } else {
-                pbCanvas.MouseUp -= pbCanvas_MouseUp;
-                // Settings.Win = false;
             }
             pbCanvas.Invalidate( );
         }
@@ -91,7 +88,7 @@ namespace Minesweeper
                             //lblScore.Text = pbCanvas.Height.ToString(); // To test ...
                             e.Graphics.DrawImage( cache, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
                             if( game.grid[x, y].flag ) {
-                                e.Graphics.DrawImage( empty, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
+                                e.Graphics.DrawImage( flag, new Rectangle( x * (pbCanvas.Size.Width / Settings.Width), y * (pbCanvas.Size.Height / Settings.Height), (pbCanvas.Size.Width / Settings.Width), (pbCanvas.Size.Height / Settings.Height) ) );
                             }
                         }
                         else if ( game.grid[x, y].caseState == CaseState.Exploded ) {
@@ -149,13 +146,9 @@ namespace Minesweeper
                     */
                     case (MouseButtons.Right):
                         //MouseButton = "Right_Click";
-                        if( game.grid[1, 1].flag == false) {
-                            game.grid[1, 1].flag = true;
-                        }
-                        else {
-                            game.grid[1, 1].flag = false;
-                        }
-                        
+                        try {
+                            game.grid[MousePosX, MousePosY].flag = !game.grid[MousePosX, MousePosY].flag;
+                        } catch ( IndexOutOfRangeException ie ) { ie.ToString( ); }
                         break;
 
                 }
