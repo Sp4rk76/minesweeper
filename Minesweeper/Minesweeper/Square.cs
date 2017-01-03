@@ -31,11 +31,10 @@ namespace Minesweeper
         public Square()
         {
             caseState = CaseState.Hidden;
-            //Génération du type de case (RANDOM) // @TODO : à améliorer
-
+            // generate random Square types
             InitializeCaseType( );
-                        
-            InitializeValues( ); // giving values to Cases, excepted "Mine"s
+
+            InitializeValues( ); // giving Square values
 
             flag = false;
         }

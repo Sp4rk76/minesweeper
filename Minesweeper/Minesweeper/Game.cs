@@ -11,14 +11,11 @@ namespace Minesweeper
         public int Width { get; set; }
         public int Height { get; set; }
         public Square[,] grid { get; set; }
-        public bool IsRunning { // Check if the game is Running
-            get { return false; }
-            set { }
-        }
-
+        public bool IsRunning { get; set; }
 
         public Game()
         {
+            IsRunning = false;
             grid = new Square[Settings.Width, Settings.Height];
         }
         

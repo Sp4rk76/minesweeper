@@ -51,10 +51,10 @@
             // pbCanvas
             // 
             this.pbCanvas.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.pbCanvas.Location = new System.Drawing.Point(10, 11);
+            this.pbCanvas.Location = new System.Drawing.Point(13, 14);
             this.pbCanvas.Margin = new System.Windows.Forms.Padding(0);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(480, 520);
+            this.pbCanvas.Size = new System.Drawing.Size(640, 640);
             this.pbCanvas.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
@@ -66,10 +66,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(507, 144);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(676, 177);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(70, 24);
+            this.label1.Size = new System.Drawing.Size(89, 29);
             this.label1.TabIndex = 402;
             this.label1.Text = "Score :";
             // 
@@ -77,20 +76,18 @@
             // 
             this.lblScore.AutoSize = true;
             this.lblScore.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblScore.Location = new System.Drawing.Point(586, 142);
-            this.lblScore.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblScore.Location = new System.Drawing.Point(781, 175);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(0, 26);
+            this.lblScore.Size = new System.Drawing.Size(0, 32);
             this.lblScore.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(507, 180);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(676, 222);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 24);
+            this.label2.Size = new System.Drawing.Size(90, 29);
             this.label2.TabIndex = 3;
             this.label2.Text = "Mines :";
             // 
@@ -98,20 +95,19 @@
             // 
             this.lblNbMines.AutoSize = true;
             this.lblNbMines.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNbMines.Location = new System.Drawing.Point(586, 178);
-            this.lblNbMines.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNbMines.Location = new System.Drawing.Point(781, 219);
             this.lblNbMines.Name = "lblNbMines";
-            this.lblNbMines.Size = new System.Drawing.Size(0, 26);
+            this.lblNbMines.Size = new System.Drawing.Size(0, 32);
             this.lblNbMines.TabIndex = 4;
             // 
             // pbPlayer1
             // 
             this.pbPlayer1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
             this.pbPlayer1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbPlayer1.Location = new System.Drawing.Point(502, 11);
-            this.pbPlayer1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pbPlayer1.Location = new System.Drawing.Point(669, 14);
+            this.pbPlayer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pbPlayer1.Name = "pbPlayer1";
-            this.pbPlayer1.Size = new System.Drawing.Size(186, 241);
+            this.pbPlayer1.Size = new System.Drawing.Size(247, 296);
             this.pbPlayer1.TabIndex = 6;
             this.pbPlayer1.TabStop = false;
             // 
@@ -120,10 +116,9 @@
             this.lblPlayerName.AutoSize = true;
             this.lblPlayerName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.lblPlayerName.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerName.Location = new System.Drawing.Point(525, 20);
-            this.lblPlayerName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlayerName.Location = new System.Drawing.Point(700, 25);
             this.lblPlayerName.Name = "lblPlayerName";
-            this.lblPlayerName.Size = new System.Drawing.Size(144, 26);
+            this.lblPlayerName.Size = new System.Drawing.Size(187, 32);
             this.lblPlayerName.TabIndex = 402;
             this.lblPlayerName.Text = "Guest_Player";
             this.lblPlayerName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -133,20 +128,19 @@
             this.lblPlayerState.AutoSize = true;
             this.lblPlayerState.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlayerState.ForeColor = System.Drawing.Color.Green;
-            this.lblPlayerState.Location = new System.Drawing.Point(558, 215);
-            this.lblPlayerState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblPlayerState.Location = new System.Drawing.Point(744, 265);
             this.lblPlayerState.Name = "lblPlayerState";
-            this.lblPlayerState.Size = new System.Drawing.Size(75, 26);
+            this.lblPlayerState.Size = new System.Drawing.Size(95, 32);
             this.lblPlayerState.TabIndex = 403;
             this.lblPlayerState.Text = "ALIVE";
             this.lblPlayerState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // buttonPlay
             // 
-            this.buttonPlay.Location = new System.Drawing.Point(502, 263);
-            this.buttonPlay.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.buttonPlay.Location = new System.Drawing.Point(669, 324);
+            this.buttonPlay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(185, 28);
+            this.buttonPlay.Size = new System.Drawing.Size(247, 34);
             this.buttonPlay.TabIndex = 404;
             this.buttonPlay.Text = "PLAY GAME";
             this.buttonPlay.UseVisualStyleBackColor = true;
@@ -154,10 +148,10 @@
             // 
             // buttonReplay
             // 
-            this.buttonReplay.Location = new System.Drawing.Point(502, 306);
-            this.buttonReplay.Margin = new System.Windows.Forms.Padding(2);
+            this.buttonReplay.Location = new System.Drawing.Point(669, 377);
+            this.buttonReplay.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.buttonReplay.Name = "buttonReplay";
-            this.buttonReplay.Size = new System.Drawing.Size(185, 28);
+            this.buttonReplay.Size = new System.Drawing.Size(247, 34);
             this.buttonReplay.TabIndex = 405;
             this.buttonReplay.Text = "REPLAY";
             this.buttonReplay.UseVisualStyleBackColor = true;
@@ -166,19 +160,21 @@
             // pbMenu
             // 
             this.pbMenu.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbMenu.InitialImage")));
-            this.pbMenu.Location = new System.Drawing.Point(0, 0);
+            this.pbMenu.Location = new System.Drawing.Point(283, 265);
+            this.pbMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pbMenu.Name = "pbMenu";
-            this.pbMenu.Size = new System.Drawing.Size(45, 46);
+            this.pbMenu.Size = new System.Drawing.Size(60, 57);
             this.pbMenu.TabIndex = 406;
             this.pbMenu.TabStop = false;
+            this.pbMenu.Click += new System.EventHandler(this.pbMenu_Click);
             this.pbMenu.Paint += new System.Windows.Forms.PaintEventHandler(this.pbMenu_Paint);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
-            this.ClientSize = new System.Drawing.Size(700, 539);
+            this.ClientSize = new System.Drawing.Size(933, 663);
             this.Controls.Add(this.pbMenu);
             this.Controls.Add(this.buttonReplay);
             this.Controls.Add(this.buttonPlay);
@@ -190,7 +186,7 @@
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pbCanvas);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.pbCanvas_Load);
