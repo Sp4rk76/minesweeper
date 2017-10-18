@@ -163,6 +163,7 @@
             this.TextBoxPlayerName.TabIndex = 406;
             this.TextBoxPlayerName.Text = "Player1";
             this.TextBoxPlayerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.TextBoxPlayerName.SelectionStart = 0;
             // 
             // Minesweeper
             // 
