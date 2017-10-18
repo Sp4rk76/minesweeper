@@ -1,25 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Minesweeper
 {
-    public enum CaseState
-    {
-        Hidden,
-        Discovered,
-        Exploded
-    };
-
-    public enum CaseType
-    {
-        Normal,
-        Mine
-    };
-
     class Square
     {
         private Random result;
@@ -32,9 +14,9 @@ namespace Minesweeper
         {
             caseState = CaseState.Hidden;
             // generate random Square types
-            InitializeCaseType( );
+            InitializeCaseType();
 
-            InitializeValues( ); // giving Square values
+            InitializeValues(); // giving Square values
 
             flag = false;
         }
@@ -51,11 +33,15 @@ namespace Minesweeper
             }
         }
 
-        private void InitializeCaseType( ) {
-            result = new Random( Guid.NewGuid( ).GetHashCode( ) );
-            if(result.Next( 10 ) == 0) { // 10 %
+        private void InitializeCaseType()
+        {
+            result = new Random(Guid.NewGuid().GetHashCode());
+            if (result.Next(10) == 0)
+            { // 10 %
                 caseType = CaseType.Mine;
-            } else {
+            }
+            else
+            {
                 caseType = CaseType.Normal;
             }
         }

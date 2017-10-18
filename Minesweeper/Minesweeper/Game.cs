@@ -1,16 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Minesweeper
 {
     class Game
     {
         public int Width { get; set; }
+
         public int Height { get; set; }
+
         public Square[,] grid { get; set; }
+
         public bool IsRunning { get; set; }
 
         public Game()
@@ -20,15 +19,13 @@ namespace Minesweeper
         }
         
         public void initGrid( ) {
-            // Loading Grid (RANDOM)
             Array.Clear( grid, 0, grid.Length );
-            // Generating Once (In Theory)
             for ( int x = 0; x < Settings.Width; x++ ) {
                 for ( int y = 0; y < Settings.Height; y++ ) {
                     grid[x, y] = new Square( );
                 }
             }  
-            // Improving : Can put loading animations HERE //
+            // Improvements : Can put loading animations HERE //
         }
 
         public void updateGrid( ) { // await initGrid ??
