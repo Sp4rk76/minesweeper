@@ -11,8 +11,8 @@
 *.userprefs
 
 # Build results
-!Minesweeper/Debug
-[Dd]ebugPublic/
+!Minesweeper/Debug/*
+!Debug/*
 [Rr]elease/
 [Rr]eleases/
 x64/
